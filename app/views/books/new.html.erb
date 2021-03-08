@@ -1,0 +1,5 @@
+<%= form_with(url: c_book_path, model: @book, local: true) do |f| %>
+    <%= f.text_field :title, placeholder: 'titulo' %>
+    <%= f.text_field :author, placeholder: 'autor' %>
+    <%= f.submit 'crear libro' %>
+<% end %>

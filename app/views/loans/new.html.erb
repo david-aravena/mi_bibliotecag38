@@ -1,0 +1,19 @@
+<%= form_with(url: c_loan_path(:book_id => params[:book_id]), model: @loan, local: true) do |f| %>
+    <%= f.number_field :book_id, value: params[:book_id], type: 'hidden'  %>
+    <div>
+        <h3> Libro a prestar </h3>
+        <%= f.text_field :name, value: @book_name %>
+    </div>
+
+    <div>
+        <h3> fecha prestamo </h3>
+        <%= f.date_field :loan_beginning %>
+    </div>
+
+    <div>
+        <h3> fecha devolucion </h3> 
+        <%= f.date_field :loan_end %>
+    </div>
+
+    <%= f.submit 'prestar libro' %>
+<% end %>

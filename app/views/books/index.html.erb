@@ -1,0 +1,29 @@
+<form>
+    <input type="submit", value='prestados' name="prestados">
+    <input type="submit", value='en estante' name="en_estante">
+    <input type="submit", value='todos' name="todos">
+</form>
+
+<% if @books.size == 0 %>
+    <h3> No hay libros en la biblioteca </h3>
+<% else %>
+    <% @books.each do |i| %>
+        <ul>
+            <li> Titulo: <%= i.title %> </li>
+            <li> Autor: <%= i.author %> </li>
+            <% if i.state == false %>
+                <li> estado: en estante || <%= link_to 'prestar', loans_new_path(:book_id => i.id) %> </li>
+            <% else %>
+                <li> estado: prestado </li>
+                <li> detalle prestamo: <% i.loans.each do |x| %>
+                    <ul>
+                        <li> fecha prestamo: <%= x.loan_beginning %> </li>
+                        <li> fecha devolucion: <%= x.loan_end %> </li>
+                    </ul>
+                <% end %> </li>
+            <% end %>
+        </ul>
+    <% end %>
+<% end %>
+
+<%= link_to 'crear nuevo libro', books_new_path %>
